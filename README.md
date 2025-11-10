@@ -29,7 +29,7 @@ Field notes, payloads, triage patterns.
 
 
 <p align="center">
-<img src="assets/divider.svg" width="100%" alt="neon divider" />
+<img src="divider.svg" width="100%" alt="neon divider" />
 </p>
 
 
@@ -55,12 +55,12 @@ Field notes, payloads, triage patterns.
 ### 📊 Metrics (server‑side SVG, cached)
 <!-- Generated via lowlighter/metrics to avoid client‑side API calls -->
 <p>
-<img src="assets/badges.svg" width="100%" alt="Profile metrics" />
+<img src="badges.svg" width="100%" alt="Profile metrics" />
 </p>
 
 
 <p align="center">
-<img src="assets/divider.svg" width="100%" alt="neon divider" />
+<img src="divider.svg" width="100%" alt="neon divider" />
 </p>
 
 
