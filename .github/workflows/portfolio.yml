@@ -1,0 +1,100 @@
+name: Portfolio
+on:
+  schedule: [{ cron: '13 */12 * * *' }]  # every 12h
+  workflow_dispatch:
+  push:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install Puppeteer (headless Chrome)
+        run: npm i puppeteer@23 --no-audit --no-fund
+
+      - name: Screenshot sites
+        env:
+          URLS: |
+            https://dystortion.dev preview-a.png
+            https://mamascupcakes.com preview-b.png
+            https://dystorti0n.github.io preview-c.png
+        run: |
+          node - <<'JS'
+          import { execSync } from 'node:child_process';
+          import fs from 'node:fs';
+          import puppeteer from 'puppeteer';
+          const lines = process.env.URLS.trim().split('\n');
+          (async () => {
+            const browser = await puppeteer.launch({ headless: 'new', args: ['--no-sandbox'] });
+            const page = await browser.newPage();
+            await page.setViewport({ width: 1600, height: 900, deviceScaleFactor: 2 });
+            for (const line of lines) {
+              const [url, file] = line.trim().split(' ');
+              try {
+                await page.goto(url, { waitUntil: 'networkidle2', timeout: 120000 });
+                await page.waitForTimeout(2500);
+                await page.screenshot({ path: file, fullPage: true });
+                console.log('Saved', file);
+              } catch (e) {
+                console.log('Fail', url, e.message);
+                fs.writeFileSync(file, '');
+              }
+            }
+            await browser.close();
+          })();
+          JS
+
+      - name: Build single mosaic (previews.png)
+        run: |
+          # Create a clean mosaic; if any file is empty, montage still works
+          montage preview-a.png preview-b.png preview-c.png -mode Concatenate -tile 3x1 -geometry +4+0 previews.png
+          rm -f preview-a.png preview-b.png preview-c.png
+
+      - name: Generate status.svg
+        env:
+          SITES: |
+            dystortion.dev
+            mamascupcakes.com
+            dystorti0n.github.io
+        run: |
+          statuses=""
+          while read -r host; do
+            [ -z "$host" ] && continue
+            code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 10 "https://$host" || echo "000")
+            color="#f59e0b" # amber default
+            [ "$code" = "200" ] && color="#22c55e" # green
+            statuses="$statuses $host:$color"
+          done <<< "$SITES"
+
+          # Simple inline SVG with circles
+          cat > status.svg <<'SVG'
+          <svg xmlns="http://www.w3.org/2000/svg" width="500" height="24">
+            <style>
+              .t { font: 12px ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; fill:#e5e7eb }
+            </style>
+            <rect x="0" y="0" width="500" height="24" fill="#0b1020"/>
+SVG
+          x=12
+          for pair in $statuses; do
+            host="${pair%%:*}"; color="${pair##*:}"
+            echo "<circle cx=\"$x\" cy=\"12\" r=\"6\" fill=\"$color\" />" >> status.svg
+            labx=$((x+10))
+            echo "<text class=\"t\" x=\"$labx\" y=\"16\">$host</text>" >> status.svg
+            x=$((x+160))
+          done
+          echo "</svg>" >> status.svg
+
+      - name: Commit updates
+        run: |
+          git config user.email "bot@users.noreply.github.com"
+          git config user.name "portfolio-bot"
+          git add previews.png status.svg || true
+          git commit -m "chore(portfolio): refresh previews & status" || echo "no changes"
+          git push
