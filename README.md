@@ -1,80 +1,33 @@
-<!-- Profile: Dyst0rti0n | Minimal external calls, all images local or action-generated -->
-<td>
-<b>red-team-tools</b><br/>
-Swiss‑army scripts & PoCs for recon/offense.
-<br/><a href="https://github.com/Dyst0rti0n/red-team-tools">repo →</a>
-</td>
-<td>
-<b>CVE-PoC-Finder</b><br/>
-GraphQL+CLI to surface fresh PoCs fast.
-<br/><a href="https://github.com/Dyst0rti0n/CVE-PoC-Finder">repo →</a>
-</td>
-</tr>
-<tr>
-<td>
-<b>dyshell</b><br/>
-Aggressive shell helpers for daily ops.
-<br/><a href="https://github.com/Dyst0rti0n/dyshell">repo →</a>
-</td>
-<td>
-<b>bug_bounty_notes</b><br/>
-Field notes, payloads, triage patterns.
-<br/><a href="https://github.com/Dyst0rti0n/bug_bounty_notes">repo →</a>
-</td>
-</tr>
-</table>
+<h1 align="center">Dyst0rti0n — Builder of Slightly Dangerous Things</h1>
 
 
-> Full list: <a href="https://github.com/Dyst0rti0n?tab=repositories">repositories →</a>
+<p align="center">Cybersecurity • Web • Go/C++ • React • Offensive Research</p>
 
 
-<p align="center">
-<img src="divider.svg" width="100%" alt="neon divider" />
-</p>
+<hr>
 
 
-### 🖥️ Live Project Previews
-<!-- Updated by GitHub Action nightly or on push -->
-<p>
-<img src="assets/previews/site-1.png" width="32%" alt="Live preview 1"/>
-<img src="assets/previews/site-2.png" width="32%" alt="Live preview 2"/>
-<img src="assets/previews/site-3.png" width="32%" alt="Live preview 3"/>
-</p>
+### Featured Projects
 
 
-<p align="center">
-<sub>These are auto‑generated screenshots of your deployed sites (see workflows).</sub>
-</p>
+- **red-team-tools** — Swiss‑army scripts & PoCs for recon/offense → <a href="https://github.com/Dyst0rti0n/red-team-tools">repo</a>
+- **CVE-PoC-Finder** — Surfaces fresh PoCs fast (CLI + GraphQL) → <a href="https://github.com/Dyst0rti0n/CVE-PoC-Finder">repo</a>
+- **dyshell** — Aggressive shell helpers for daily ops → <a href="https://github.com/Dyst0rti0n/dyshell">repo</a>
+- **bug_bounty_notes** — Field notes, payloads, triage patterns → <a href="https://github.com/Dyst0rti0n/bug_bounty_notes">repo</a>
 
 
-<p align="center">
-<img src="assets/divider.svg" width="100%" alt="neon divider" />
-</p>
+> Full list → <a href="https://github.com/Dyst0rti0n?tab=repositories">repositories</a>
 
 
-### 📊 Metrics (server‑side SVG, cached)
-<!-- Generated via lowlighter/metrics to avoid client‑side API calls -->
-<p>
-<img src="badges.svg" width="100%" alt="Profile metrics" />
-</p>
+<hr>
 
 
-<p align="center">
-<img src="divider.svg" width="100%" alt="neon divider" />
-</p>
+### What I Do
+- Break & measure things, then harden
+- Vercel/Next.js builds with silly animations
+- Go/C++ tools for scraping, scanning, and TI
 
 
-### 🧰 Tech Stack
-<p>
-Go · C++ · JavaScript/TypeScript · React (Next.js) · Tailwind · Node · Bash · Docker · GitHub Actions · Vercel · Linux · Wireshark · Nmap
-</p>
-
-
-### 📬 Contact
-- Site: https://dystortion.dev (or your current primary)
+### Contact
+- Site: https://dystortion.dev
 - DM: open on GitHub
-
-
-<p align="center">
-<img src="assets/divider.svg" width="100%" alt="neon divider" />
-</p>
